@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>no.eniro.poms</groupId>
+        <artifactId>common-web-eniro-pom</artifactId>
+        <version>1.10</version>
+    </parent>
+		 
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>no.eniro</groupId>
+    <artifactId>etrafikk-addax</artifactId>
+    <packaging>war</packaging>
+    <name>Etrafikk Addax Parser</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>no.eniro.common.web</groupId>
+            <artifactId>context</artifactId>
+            <version>1.4</version>
+            <exclusions>
+                <!-- Exclude dependency on old 2.5.6 Spring überjar  -->
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <!--<finalName>etrafikk-addax</finalName>-->
+        <plugins>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <!--<version>6.1.24</version>-->
+                <configuration>
+                    <reload>manual</reload>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>running.environment</name>
+                            <value>devel</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>org.mortbay.util.URI.charset</name>
+                            <value>UTF-8</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>org.mortbay.jetty.Request.queryEncoding</name>
+                            <value>UTF-8</value>
+                        </systemProperty>
+                    </systemProperties>
+                    <webAppConfig>
+                        <contextPath>/etrafikk-addax</contextPath>
+                    </webAppConfig>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <!--
+        scm and the site distributionmanagement is expanded according to what it inherits. Bug at http://jira.codehaus.org/browse/MNG-2290
+        This below has to be set for each project
+    -->
+    <scm>
+        <connection>scm:svn:https://svn.eniro.no/etrafikk-addax/trunk</connection>
+        <developerConnection>scm:svn:https://svn.eniro.no/etrafikk-addax/trunk/</developerConnection>
+        <url>http://viewvc/viewvc/etrafikk-addax</url>
+    </scm>
+    <distributionManagement>
+        <site>
+            <id>website</id>
+            <url>${site.root}${site.path}</url>
+        </site>
+    </distributionManagement>
+</project>
