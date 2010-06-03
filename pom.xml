@@ -7,13 +7,12 @@
         <artifactId>common-web-eniro-pom</artifactId>
         <version>1.10</version>
     </parent>
-		 
     <modelVersion>4.0.0</modelVersion>
     <groupId>no.eniro</groupId>
     <artifactId>etrafikk-addax</artifactId>
     <packaging>war</packaging>
     <name>Etrafikk Addax Parser</name>
-
+    
     <dependencies>
         <dependency>
             <groupId>no.eniro.common.web</groupId>
